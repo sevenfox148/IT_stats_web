@@ -1,0 +1,22 @@
+.card_holder {
+    padding: 2%;
+    height: auto;
+    width: 100%;
+    display: grid;
+    gap: 1em;
+    justify-items: center;
+    align-content: start;
+}
+
+.card_holder .card{
+    padding: 2%;
+    width: 60%;
+    height: auto;
+    border-radius: 25px;
+    display: grid;
+    grid-template-columns: 1fr 5fr 3fr;
+    gap: 1em;
+
+    background-color: #423c82;
+    color:white;
+}

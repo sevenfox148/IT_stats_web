@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Timeline</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='general.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='charts.css') }}">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body><div class="page">
+    <div class="menu_item item1"><a href="/">
+        <img class="logo" src="{{ url_for('static', filename='images/home.png') }}">
+    </a></div>
+    <div class="current menu_item item2"><a href="/timeline">Timeline</a></div>
+    <div class="menu_item item3"><a href="/work_format">Work format</a></div>
+    <div class="menu_item item4"><a href="/technologies">Technologies</a></div>
+    <div class="menu_item item5"><a href="/top_companies">Top companies</a></div>
+
+    <div class="content">
+        <form action="/timeline" method="POST">
+            <select class="filter1" name="technology" id="technology" onchange="this.form.submit()">
+            {% for option in dropdown_data['technology'] %}
+                <option value="{{ option.index }}" {% if option.index == selected_values.get('technology') %}selected{% endif %}>
+                    {{ option.value }}
+                </option>
+            {% endfor %}
+            </select>
+            <select class="filter2" name="experience" id="experience" onchange="this.form.submit()">
+            {% for option in dropdown_data['experience'] %}
+                <option value="{{ option.index }}" {% if option.index == selected_values.get('experience') %}selected{% endif %}>
+                    {{ option.value }}
+                </option>
+            {% endfor %}
+            </select>
+            <select class="filter3" name="work_format" id="work_format" onchange="this.form.submit()">
+            {% for option in dropdown_data['work_format'] %}
+                <option value="{{ option.index }}" {% if option.index == selected_values.get('work_format') %}selected{% endif %}>
+                    {{ option.value }}
+                </option>
+            {% endfor %}
+            </select>
+        </form>
+
+        <div id="chart">
+            {% if graph_json is not none %}
+                <script>
+                    const graph = {{ graph_json | safe }};
+                    const config = { displayModeBar: false};
+                    Plotly.newPlot('chart', graph.data, graph.layout, config);
+                </script>
+            {% else %}
+                <h1>No relevant data</h1>
+            {% endif %}
+        </div>
+    </div>
+</div></body></html>

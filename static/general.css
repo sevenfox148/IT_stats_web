@@ -1,0 +1,126 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Slab', serif;
+    text-decoration: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+h1, h3 { color: #440154; }
+
+.page{
+    min-height: 100%;
+    max-height: auto;
+    display: grid;
+
+    grid-template-columns: 1fr repeat(4, 3fr);
+    grid-template-rows: minmax(5vh, auto) 1fr;
+
+    grid-template-areas:
+        "item1 item2 item3 item4 item5"
+        "content content content content content";
+}
+
+.menu_item{
+    padding: 1%;
+    background-color: #440154;
+    color:white;
+
+    grid-area: menu_item;
+
+    display: grid;
+    justify-items: center;
+    align-content: center;
+}
+.item1 { grid-area: item1; }
+.item2 { grid-area: item2; }
+.item3 { grid-area: item3; }
+.item4 { grid-area: item4; }
+.item5 { grid-area: item5; }
+.current{ background-color: #423c82}
+
+.content{
+    background-color: #f3f3f3;
+    padding: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+    font-size: medium;
+
+    text-align: justify;
+    grid-area: content;
+
+    display: grid;
+    grid-template-rows: minmax(1vh, auto) minmax(10vh, auto) 1fr;
+
+    grid-template-areas:
+        "title"
+        "form"
+        "main";
+    justify-items: center;
+}
+
+form {
+    padding: 1%;
+
+    width: 75%;
+    padding-left: 0;
+    padding-right: 0;
+    grid-area: form;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+        "filter1 filter2 filter3";
+    gap: 10px;
+    justify-items: center;
+    align-items: center;
+}
+form select {
+    padding: 2%;
+    border-radius: 25px;
+    background-color: #f6f381;
+    text-align: center;
+    border: 1px solid #f6f381;
+    text-align: center;
+    width: auto;
+    height: 3em;
+    font-family: 'Roboto Slab', serif;
+}
+form select option:hover {
+    background-color: #423c82;
+    color: white;
+}
+form select option:checked {
+    background-color: #423c82;
+    color: white;
+}
+.filter1 { grid-area: filter1; }
+.filter2 { grid-area: filter2; }
+.filter3 { grid-area: filter3; }
+
+a{
+    width: 100%;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    font-size: large;
+}
+a:hover{
+    transition: .5s;
+    color: #eae527;
+}
+
+.logo {
+    max-height: 50%;
+    width: auto;
+    max-width: 90%;
+}
+.logo:hover {
+    filter: brightness(0) saturate(100%) invert(85%) sepia(44%) saturate(810%) hue-rotate(1deg) brightness(109%) contrast(83%);
+}
