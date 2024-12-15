@@ -79,7 +79,7 @@ if __name__ == '__main__':
     scheduler.start()
 
     print("Waiting for data to load...")
-    time.sleep(60)
+    time.sleep(30)
 
     print("Starting Flask app...")
     app.run(debug=True)
