@@ -7,7 +7,6 @@ from flask import Flask, render_template, request
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.urandom(64)
 vacancies, companies, tech, experience = None, None, None, None
 
 def fetch_data_from_db():
@@ -20,6 +19,8 @@ def fetch_data_from_db():
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
+    if vacancies is None or companies is None or tech is None or experience is None:
+        return render_template('index_loading.html')
     dropdown_data, default_values = pf.get_filters_options(["technology", "experience", "work_format"])
     selected_values = request.form.to_dict() if request.method == 'POST' else default_values
     tech_value, exp_value, format_value = pf.get_filters_values(selected_values)
@@ -78,8 +79,4 @@ if __name__ == '__main__':
     scheduler.add_job(fetch_data_from_db, 'interval', minutes=3)
     scheduler.start()
 
-    print("Waiting for data to load...")
-    time.sleep(59)
-
-    print("Starting Flask app...")
     app.run(debug=True)

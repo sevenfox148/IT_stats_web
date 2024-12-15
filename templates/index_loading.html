@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ITstats</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='general.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+
+<body><div class="page">
+    <div class="current menu_item item1"><a href="/">
+        <img class="logo" src="{{ url_for('static', filename='images/home.png') }}">
+    </a></div>
+    <div class="menu_item item2"><a href="/timeline">Timeline</a></div>
+    <div class="menu_item item3"><a href="/work_format">Work format</a></div>
+    <div class="menu_item item4"><a href="/technologies">Technologies</a></div>
+    <div class="menu_item item5"><a href="/top_companies">Top companies</a></div>
+
+    <div class="content">
+      <h1>Data loading. Please refresh page a little later :)</h1>
+    </div>
+</div></body>
+</html>
