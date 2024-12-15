@@ -14,14 +14,14 @@ colors = px.colors.sequential.Viridis
 cmap = 'viridis_r'
 
 def filter_df(df, technology=0, experience=0, work_format=None):
-    filtered_gf = df.copy()
+    filtered_df = df.copy()
     if technology:
-        filtered_gf = filtered_gf[filtered_gf['technology']==technology]
+        filtered_df = filtered_df[filtered_df['technology']==technology]
     if experience:
-        filtered_gf = filtered_gf[filtered_gf['experience']==experience]
+        filtered_df = filtered_df[filtered_df['experience']==experience]
     if work_format:
-        filtered_gf = filtered_gf[filtered_gf['work_type']==work_format]
-    return filtered_gf
+        filtered_df = filtered_df[filtered_df['work_type']==work_format]
+    return filtered_df
 
 
 def create_time_chart(df, technology=0, experience=0, work_format=None):
