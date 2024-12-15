@@ -4,6 +4,7 @@ from web_functions import create_charts as cc, process_filters as pf, db_interac
 
 from apscheduler.schedulers.background import BackgroundScheduler
 from flask import Flask, render_template, request
+from threading import Thread
 
 
 app = Flask(__name__)
@@ -16,6 +17,15 @@ def fetch_data_from_db():
     tech = db.read_table('warehouse', 'technology', index='id')
     experience = db.read_table('warehouse', 'experience', index='id')
 
+def fetch_data_in_background():
+    fetch_data_from_db()
+
+thread = Thread(target=fetch_data_in_background)
+thread.start()
+
+scheduler = BackgroundScheduler()
+scheduler.add_job(fetch_data_from_db, 'interval', minutes=30)
+scheduler.start()
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -72,11 +82,3 @@ def top_companies():
     return render_template('top_companies.html',
                            graph_json=cc.create_top_companies(vacancies, companies, technology=tech_value),
                            dropdown_data=dropdown_data, selected_values=selected_values)
-
-if __name__ == '__main__':
-    fetch_data_from_db()
-    scheduler = BackgroundScheduler()
-    scheduler.add_job(fetch_data_from_db, 'interval', minutes=3)
-    scheduler.start()
-
-    app.run(debug=True)
