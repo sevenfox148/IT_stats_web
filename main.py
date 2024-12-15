@@ -1,4 +1,5 @@
 import os
+import time
 from web_functions import create_charts as cc, process_filters as pf, db_interactions as db
 
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -77,4 +78,8 @@ if __name__ == '__main__':
     scheduler.add_job(fetch_data_from_db, 'interval', minutes=3)
     scheduler.start()
 
+    print("Waiting for data to load...")
+    time.sleep(120)
+
+    print("Starting Flask app...")
     app.run(debug=True)
