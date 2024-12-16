@@ -1,5 +1,3 @@
-import os
-import time
 from web_functions import create_charts as cc, process_filters as pf, db_interactions as db
 
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -16,6 +14,7 @@ def fetch_data_from_db():
     companies = db.read_table('warehouse', 'company', index='id')
     tech = db.read_table('warehouse', 'technology', index='id')
     experience = db.read_table('warehouse', 'experience', index='id')
+    pf.refreash_filters(tech, experience)
 
 def fetch_data_in_background():
     fetch_data_from_db()
@@ -82,3 +81,6 @@ def top_companies():
     return render_template('top_companies.html',
                            graph_json=cc.create_top_companies(vacancies, companies, technology=tech_value),
                            dropdown_data=dropdown_data, selected_values=selected_values)
+
+if __name__ == '__main__':
+    app.run(debug=True)

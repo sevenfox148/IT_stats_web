@@ -13,6 +13,7 @@ html, body {
 h1, h3 { color: #440154; }
 
 .page{
+    background-color: #f3f3f3;
     min-height: 100%;
     max-height: auto;
     display: grid;

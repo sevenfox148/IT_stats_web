@@ -1,6 +1,7 @@
 import pandas as pd
 from sqlalchemy import create_engine
 import pg8000
+from dotenv import load_dotenv
 import os
 
 db_host = os.getenv("DB_HOST")
