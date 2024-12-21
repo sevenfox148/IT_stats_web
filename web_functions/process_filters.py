@@ -1,10 +1,7 @@
-from web_functions.db_interactions import read_table
-
 tech_df = None
 exp_df = None
 
-
-def refreash_filters(technologies, experience):
+def refresh_filters(technologies, experience):
     global tech_df, exp_df
     tech_df = technologies
     tech_df = tech_df.sort_values(by="technology")

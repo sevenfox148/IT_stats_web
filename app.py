@@ -14,7 +14,7 @@ def fetch_data_from_db():
     companies = db.read_table('warehouse', 'company', index='id')
     tech = db.read_table('warehouse', 'technology', index='id')
     experience = db.read_table('warehouse', 'experience', index='id')
-    pf.refreash_filters(tech, experience)
+    pf.refresh_filters(tech, experience)
 
 def fetch_data_in_background():
     fetch_data_from_db()

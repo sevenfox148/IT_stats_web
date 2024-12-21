@@ -31,7 +31,7 @@
             {% if graph_json is not none %}
                 <script>
                     const graph = {{ graph_json | safe }};
-                    const config = { displayModeBar: false};
+                    const config = { displayModeBar: false, responsive: true};
                     Plotly.newPlot('chart', graph.data, graph.layout, config);
                 </script>
             {% else %}

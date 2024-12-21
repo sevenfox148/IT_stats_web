@@ -3,7 +3,6 @@ from plotly.utils import PlotlyJSONEncoder
 import plotly.express as px
 import json
 
-schema = 'warehouse'
 layout = go.Layout(plot_bgcolor="#f3f3f3",
                     paper_bgcolor="#f3f3f3",
                     font=dict(family="Roboto Slab, serif",
@@ -64,7 +63,6 @@ def create_work_format_chart(df, technology=None):
 def create_technologies_chart(df, technologies, experience=None):
     df = filter_df(df, experience=experience)
     if len(df) > 0:
-        #technologies = read_table(schema, 'technology', index='id')
         by_technology = df.groupby('technology').agg({'description': 'count'})
         by_technology = by_technology.rename(columns={'description': 'vacancies'})
 
@@ -86,7 +84,6 @@ def create_technologies_chart(df, technologies, experience=None):
 def create_top_companies(df, companies, technology=None):
     df = filter_df(df, technology=technology)
     if len(df) > 0:
-        #companies = read_table(schema, 'company', index='id')
         top_companies = df.groupby('company').agg({'description': 'count'})
         top_companies = top_companies.rename(columns={'description': 'vacancies'})
 
@@ -122,7 +119,6 @@ def create_top_companies(df, companies, technology=None):
 def recent_vacancies(df, companies, technology=0, experience=0, work_format=None):
     df = filter_df(df, technology, experience, work_format)
     if len(df) > 0:
-        #companies = read_table(schema, 'company', index='id')
         index_to_company = dict(zip(companies.index, companies['name']))
 
         recent = df.sort_values(by='creation_date', ascending=False)
